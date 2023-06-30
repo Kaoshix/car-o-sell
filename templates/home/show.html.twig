@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Car detail{% endblock %}
+
+{% block body %}
+
+<div class="d-md-flex text-center justify-content-md-evenly">
+    <div>
+        <img src='https://placehold.co/400x600' alt="...">
+    </div>
+
+    <div>
+        <h2>{{ car.name }}</h2>
+        <p class="card-text">Number of seats : {{ car.nbSeats }} <br />Number of doors : {{ car.nbDoors
+            }}
+        </p>
+        <p class="card-text">Category : {{ car.carCategory }}</p>
+
+        <h2>Price : {{ car.cost }} $</h2>
+        <a href='#' class="btn btn-primary fs-3 px-5">Buy</a>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -50,4 +50,15 @@ class HomeController extends AbstractController
             'categories' => $categories,
         ]);
     }
+
+    #[Route('/car/{id}', methods: ['GET'], name: 'car_show')]
+    public function showCar(CarRepository $carRepository, CarCategoryRepository $carCategoryRepository, $id): Response
+    {
+        $car = $carRepository->find($id);
+        $categories = $carCategoryRepository->findAll();
+        return $this->render('home/show.html.twig', [
+            'car' => $car,
+            'categories' => $categories,
+        ]);
+    }
 }
