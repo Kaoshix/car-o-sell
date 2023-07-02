@@ -39,18 +39,16 @@ class CarRepository extends ServiceEntityRepository
         }
     }
 
-    //     /**
-    //  * @return Car[] Returns an array of Car objects
-    //  */
-    // public function filter($value): array
-    // {
-    //     $qb =  $this->createQueryBuilder('c');
-    //     $qb->andWhere('c.name LIKE :val')
-    //         ->setParameter('val', '%'.$value.'%')
-    //         ->orderBy('c.id', 'ASC')
-    //         ->setMaxResults(0);
+    /**
+     * @return Car[] Returns an array of Car objects
+     */
+    public function searchByName($value): array
+    {
+        $qb =  $this->createQueryBuilder('c');
+        $qb->andWhere('c.name LIKE :val')
+            ->setParameter('val', '%' . $value . '%')
+            ->orderBy('c.id', 'ASC');
 
-    //     return $qb->getQuery()->getResult();
-    // }
-
+        return $qb->getQuery()->getResult();
+    }
 }

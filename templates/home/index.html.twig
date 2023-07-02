@@ -21,7 +21,8 @@
             <select name="name" id="category_select" class="form-select" aria-label="Default select example">
                 <option selected></option>
                 {% for category in categories %}
-                <option value={{ category.name }}>{{ category.name }}</option>
+                <option value={{ category }} {% if app.request.get('name')==category %} selected {% endif %}>
+                    {{ category.name }}</option>
                 {% endfor %}
             </select>
             <button type="submit" class="btn btn-primary mt-3">Search</button>

@@ -28,7 +28,7 @@ class HomeController extends AbstractController
     public function searchCar(Request $request, CarCategoryRepository $carCategoryRepository, CarRepository $carRepository, PaginatorInterface $paginator): Response
     {
         $search = $request->query->get('name');
-        $cars = $carRepository->findBy(['name' => $search]);
+        $cars = $carRepository->searchByName($search);
         $categories = $carCategoryRepository->findAll();
         $paginationCars = $paginator->paginate($cars, $request->query->getInt('page', 1), 20);
         return $this->render('home/index.html.twig', [
@@ -52,13 +52,11 @@ class HomeController extends AbstractController
     }
 
     #[Route('/car/{id}', methods: ['GET'], name: 'car_show')]
-    public function showCar(CarRepository $carRepository, CarCategoryRepository $carCategoryRepository, $id): Response
+    public function showCar(CarRepository $carRepository, $id): Response
     {
         $car = $carRepository->find($id);
-        $categories = $carCategoryRepository->findAll();
         return $this->render('home/show.html.twig', [
             'car' => $car,
-            'categories' => $categories,
         ]);
     }
 }
